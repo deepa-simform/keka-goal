@@ -41,6 +41,201 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme {
+  /* White */
+  --color-ds-white: #ffffff;
+
+  /* Gray */
+  --color-ds-gray-25: #fdfdfd;
+  --color-ds-gray-50: #fafafa;
+  --color-ds-gray-100: #f5f5f5;
+  --color-ds-gray-200: #e9eaeb;
+  --color-ds-gray-300: #d5d7da;
+  --color-ds-gray-400: #a4a7ae;
+  --color-ds-gray-500: #717680;
+  --color-ds-gray-600: #535862;
+  --color-ds-gray-700: #414651;
+  --color-ds-gray-800: #252b37;
+  --color-ds-gray-900: #181d27;
+
+  /* Brand */
+  --color-ds-brand-25: #fcfaff;
+  --color-ds-brand-50: #f9f5ff;
+  --color-ds-brand-100: #f4ebff;
+  --color-ds-brand-200: #e9d7fe;
+  --color-ds-brand-300: #d6bbfb;
+  --color-ds-brand-400: #b692f6;
+  --color-ds-brand-500: #9e77ed;
+  --color-ds-brand-600: #7f56d9;
+  --color-ds-brand-700: #6941c6;
+  --color-ds-brand-800: #53389e;
+  --color-ds-brand-900: #42307d;
+
+  /* Error */
+  --color-ds-error-25: #fffbfa;
+  --color-ds-error-50: #fef3f2;
+  --color-ds-error-100: #fee4e2;
+  --color-ds-error-200: #fecdca;
+  --color-ds-error-300: #fda29b;
+  --color-ds-error-400: #f97066;
+  --color-ds-error-500: #f04438;
+  --color-ds-error-600: #d92d20;
+  --color-ds-error-700: #b42318;
+  --color-ds-error-800: #912018;
+  --color-ds-error-900: #7a271a;
+
+  /* Warning */
+  --color-ds-warning-25: #fffcf5;
+  --color-ds-warning-50: #fffaeb;
+  --color-ds-warning-100: #fef0c7;
+  --color-ds-warning-200: #fedf89;
+  --color-ds-warning-300: #fec84b;
+  --color-ds-warning-400: #fdb022;
+  --color-ds-warning-500: #f79009;
+  --color-ds-warning-600: #dc6803;
+  --color-ds-warning-700: #b54708;
+  --color-ds-warning-800: #93370d;
+  --color-ds-warning-900: #7a2e0e;
+
+  /* Success */
+  --color-ds-success-25: #f6fef9;
+  --color-ds-success-50: #ecfdf3;
+  --color-ds-success-100: #d1fadf;
+  --color-ds-success-200: #a6f4c5;
+  --color-ds-success-300: #6ce9a6;
+  --color-ds-success-400: #32d583;
+  --color-ds-success-500: #12b76a;
+  --color-ds-success-600: #039855;
+  --color-ds-success-700: #027a48;
+  --color-ds-success-800: #05603a;
+  --color-ds-success-900: #054f31;
+
+  /* Blue Gray */
+  --color-ds-blue-gray-50: #f8f9fc;
+  --color-ds-blue-gray-100: #eaecf5;
+  --color-ds-blue-gray-200: #d5d9eb;
+  --color-ds-blue-gray-300: #afb5d9;
+  --color-ds-blue-gray-400: #717bbc;
+  --color-ds-blue-gray-500: #4e5ba6;
+  --color-ds-blue-gray-600: #3e4784;
+  --color-ds-blue-gray-700: #363f72;
+  --color-ds-blue-gray-800: #293056;
+  --color-ds-blue-gray-900: #101323;
+
+  /* Blue Light */
+  --color-ds-blue-light-25: #f5fbff;
+  --color-ds-blue-light-50: #f0f9ff;
+  --color-ds-blue-light-100: #e0f2fe;
+  --color-ds-blue-light-200: #b9e6fe;
+  --color-ds-blue-light-300: #7cd4fd;
+  --color-ds-blue-light-400: #36bffa;
+  --color-ds-blue-light-500: #0ba5ec;
+  --color-ds-blue-light-600: #0086c9;
+  --color-ds-blue-light-700: #026aa2;
+  --color-ds-blue-light-800: #065986;
+  --color-ds-blue-light-900: #0b4a6f;
+
+  /* Blue */
+  --color-ds-blue-25: #f5faff;
+  --color-ds-blue-50: #eff8ff;
+  --color-ds-blue-100: #d1e9ff;
+  --color-ds-blue-200: #b2ddff;
+  --color-ds-blue-300: #84caff;
+  --color-ds-blue-400: #53b1fd;
+  --color-ds-blue-500: #2e90fa;
+  --color-ds-blue-600: #1570ef;
+  --color-ds-blue-700: #175cd3;
+  --color-ds-blue-800: #1849a9;
+  --color-ds-blue-900: #194185;
+
+  /* Indigo */
+  --color-ds-indigo-25: #f5f8ff;
+  --color-ds-indigo-50: #eef4ff;
+  --color-ds-indigo-100: #e0eaff;
+  --color-ds-indigo-200: #c7d7fe;
+  --color-ds-indigo-300: #a4bcfd;
+  --color-ds-indigo-400: #8098f9;
+  --color-ds-indigo-500: #6172f3;
+  --color-ds-indigo-600: #444ce7;
+  --color-ds-indigo-700: #3538cd;
+  --color-ds-indigo-800: #2d31a6;
+  --color-ds-indigo-900: #2d3282;
+
+  /* Purple */
+  --color-ds-purple-25: #fafaff;
+  --color-ds-purple-50: #f4f3ff;
+  --color-ds-purple-100: #ebe9fe;
+  --color-ds-purple-200: #d9d6fe;
+  --color-ds-purple-300: #bdb4fe;
+  --color-ds-purple-400: #9b8afb;
+  --color-ds-purple-500: #7a5af8;
+  --color-ds-purple-600: #6938ef;
+  --color-ds-purple-700: #5925dc;
+  --color-ds-purple-800: #4a1fb8;
+  --color-ds-purple-900: #3e1c96;
+
+  /* Pink */
+  --color-ds-pink-25: #fef6fb;
+  --color-ds-pink-50: #fdf2fa;
+  --color-ds-pink-100: #fce7f6;
+  --color-ds-pink-200: #fcceee;
+  --color-ds-pink-300: #faa7e0;
+  --color-ds-pink-400: #f670c7;
+  --color-ds-pink-500: #ee46bc;
+  --color-ds-pink-600: #dd2590;
+  --color-ds-pink-700: #c11574;
+  --color-ds-pink-800: #9e165f;
+  --color-ds-pink-900: #851651;
+
+  /* Rose */
+  --color-ds-rose-25: #fff5f6;
+  --color-ds-rose-50: #fff1f3;
+  --color-ds-rose-100: #ffe4e8;
+  --color-ds-rose-200: #fecdd6;
+  --color-ds-rose-300: #fea3b4;
+  --color-ds-rose-400: #fd6f8e;
+  --color-ds-rose-500: #f63d68;
+  --color-ds-rose-600: #e31b54;
+  --color-ds-rose-700: #c01048;
+  --color-ds-rose-800: #a11043;
+  --color-ds-rose-900: #89123e;
+
+  /* Orange */
+  --color-ds-orange-25: #fffaf5;
+  --color-ds-orange-50: #fff6ed;
+  --color-ds-orange-100: #ffead5;
+  --color-ds-orange-200: #fddcab;
+  --color-ds-orange-300: #feb273;
+  --color-ds-orange-400: #fd853a;
+  --color-ds-orange-500: #fb6514;
+  --color-ds-orange-600: #ec4a0a;
+  --color-ds-orange-700: #c4320a;
+  --color-ds-orange-800: #9c2a10;
+  --color-ds-orange-900: #7e2410;
+
+  /* Shadows */
+  --shadow-ds-xs: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  --shadow-ds-sm: 0px 1px 2px 0px rgba(16, 24, 40, 0.06),
+    0px 1px 3px 0px rgba(16, 24, 40, 0.1);
+  --shadow-ds-md: 0px 2px 4px -2px rgba(16, 24, 40, 0.06),
+    0px 4px 8px -2px rgba(16, 24, 40, 0.1);
+  --shadow-ds-lg: 0px 4px 6px -2px rgba(16, 24, 40, 0.03),
+    0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+  --shadow-ds-xl: 0px 8px 8px -4px rgba(16, 24, 40, 0.03),
+    0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+  --shadow-ds-2xl: 0px 24px 48px -12px rgba(16, 24, 40, 0.18);
+  --shadow-ds-3xl: 0px 32px 64px -12px rgba(16, 24, 40, 0.14);
+
+  /* Shadow utilities */
+  --box-shadow-ds-xs: var(--shadow-ds-xs);
+  --box-shadow-ds-sm: var(--shadow-ds-sm);
+  --box-shadow-ds-md: var(--shadow-ds-md);
+  --box-shadow-ds-lg: var(--shadow-ds-lg);
+  --box-shadow-ds-xl: var(--shadow-ds-xl);
+  --box-shadow-ds-2xl: var(--shadow-ds-2xl);
+  --box-shadow-ds-3xl: var(--shadow-ds-3xl);
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
