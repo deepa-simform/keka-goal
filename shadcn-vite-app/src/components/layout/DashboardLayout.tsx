@@ -9,6 +9,10 @@ import {
   X,
   ChevronRight,
   FileText,
+  Square,
+  Table,
+  Layers,
+  ChevronDown,
 } from "lucide-react";
 
 const menuItems = [
@@ -35,6 +39,26 @@ const menuItems = [
         title: "Forms",
         path: "/forms",
         icon: FileText,
+      },
+      {
+        title: "Modals",
+        path: "/modals",
+        icon: Square,
+      },
+      {
+        title: "Tables",
+        path: "/tables",
+        icon: Table,
+      },
+      {
+        title: "Tabs",
+        path: "/tabs",
+        icon: Layers,
+      },
+      {
+        title: "Dropdowns",
+        path: "/dropdowns",
+        icon: ChevronDown,
       },
     ],
   },
