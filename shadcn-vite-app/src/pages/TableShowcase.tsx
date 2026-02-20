@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DataTable } from "@/components/ui/data-table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-// Removed unused Input import
 import {
   Select,
   SelectContent,
@@ -31,7 +30,6 @@ import {
 } from "@/data/data-table-columns";
 import {
   Users,
-  DollarSign,
   Building,
   FileText,
   Download,
@@ -72,26 +70,6 @@ export default function TableShowcase() {
         break;
     }
   };
-
-  // Get table statistics
-  const getTableStats = () => {
-    const data = {
-      team: teamMembersData,
-      sales: salesData,
-      companies: companiesData,
-      files: filesData,
-    };
-
-    return {
-      total: data[selectedTable].length,
-      active: data[selectedTable].filter(
-        (item) => item.status === "active" || item.status === "paid"
-      ).length,
-      selected: selectedRows.length,
-    };
-  };
-
-  const stats = getTableStats();
 
   return (
     <div className="space-y-8 px-4 md:px-12">

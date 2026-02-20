@@ -283,7 +283,11 @@ const ModalShowcase = () => {
         {/* Team Modal */}
         <Modal
           open={modalStates["team-modal"]}
-          onOpenChange={() => closeModal("team-modal")}
+          onOpenChange={(open) => {
+            if (!open) {
+              closeModal("team-modal");
+            }
+          }}
         >
           <ModalContent size="lg" alignment="left">
             <ModalBody>
@@ -573,10 +577,10 @@ const ModalShowcase = () => {
                     {size === "sm" || size === "default"
                       ? "400px"
                       : size === "md"
-                      ? "480px"
-                      : size === "lg"
-                      ? "512px"
-                      : "544px"}
+                        ? "480px"
+                        : size === "lg"
+                          ? "512px"
+                          : "544px"}
                   </p>
                   <p>Padding: 24px</p>
                   <p>Gap between sections: 32px</p>

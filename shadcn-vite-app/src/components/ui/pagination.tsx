@@ -96,7 +96,9 @@ export function Pagination({
           return (
             <button
               key={pageNum}
+              type="button"
               onClick={() => onPageChange(pageNum)}
+              aria-current={isActive ? "page" : undefined}
               className={cn(
                 "flex items-center justify-center w-10 h-10 text-sm font-medium rounded-lg transition-colors",
                 isActive

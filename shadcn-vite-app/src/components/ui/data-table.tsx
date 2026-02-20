@@ -82,7 +82,7 @@ const dataTableVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 );
 
 export function DataTable<T extends Record<string, any>>({
@@ -115,7 +115,7 @@ export function DataTable<T extends Record<string, any>>({
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [columnFilters, setColumnFilters] = useState<Record<string, string>>(
-    {}
+    {},
   );
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
   const [pageSize, setPageSize] = useState(itemsPerPage);
@@ -140,8 +140,8 @@ export function DataTable<T extends Record<string, any>>({
         columns.some((column) =>
           String(item[column.key])
             .toLowerCase()
-            .includes(searchTerm.toLowerCase())
-        )
+            .includes(searchTerm.toLowerCase()),
+        ),
       );
     }
 
@@ -149,7 +149,7 @@ export function DataTable<T extends Record<string, any>>({
     Object.entries(columnFilters).forEach(([key, value]) => {
       if (value) {
         result = result.filter((item) =>
-          String(item[key]).toLowerCase().includes(value.toLowerCase())
+          String(item[key]).toLowerCase().includes(value.toLowerCase()),
         );
       }
     });
@@ -174,22 +174,23 @@ export function DataTable<T extends Record<string, any>>({
   const startIndex = (currentPage - 1) * pageSize;
   const paginatedData = filteredAndSortedData.slice(
     startIndex,
-    startIndex + pageSize
+    startIndex + pageSize,
   );
 
   // Handle row selection
   const handleRowSelect = (rowId: string, checked: boolean) => {
+    const id = String(rowId);
     const newSelectedRows = new Set(selectedRows);
     if (checked) {
-      newSelectedRows.add(rowId);
+      newSelectedRows.add(id);
     } else {
-      newSelectedRows.delete(rowId);
+      newSelectedRows.delete(id);
     }
     setSelectedRows(newSelectedRows);
 
     if (onRowSelect) {
       const selectedItems = data.filter((item) =>
-        newSelectedRows.has(String(item.id))
+        newSelectedRows.has(String(item.id)),
       );
       onRowSelect(selectedItems);
     }
@@ -203,9 +204,6 @@ export function DataTable<T extends Record<string, any>>({
       setSelectedRows(new Set());
     }
   };
-
-  // Progress calculation for pagination
-  const progressPercentage = (currentPage / totalPages) * 100;
 
   // Avatars and progress bar for bottom card
   const showAvatars = paginatedData.length > 0 && paginatedData[0].name;
@@ -284,7 +282,7 @@ export function DataTable<T extends Record<string, any>>({
                         <SelectValue placeholder={column.header} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">All {column.header}</SelectItem>
+                        <SelectItem value="All">All {column.header}</SelectItem>
                         {column.filterOptions?.map((option) => (
                           <SelectItem key={option} value={option}>
                             {option}
@@ -325,7 +323,7 @@ export function DataTable<T extends Record<string, any>>({
                       enableSorting &&
                       "cursor-pointer hover:bg-ds-gray-100",
                     column.align === "right" && "text-right",
-                    column.align === "center" && "text-center"
+                    column.align === "center" && "text-center",
                   )}
                   onClick={() => column.sortable && handleSort(column.key)}
                 >
@@ -338,7 +336,7 @@ export function DataTable<T extends Record<string, any>>({
                           "text-ds-gray-400 transition-transform",
                           sortConfig?.key === column.key &&
                             sortConfig.direction === "desc" &&
-                            "rotate-180"
+                            "rotate-180",
                         )}
                       />
                     )}
@@ -373,7 +371,7 @@ export function DataTable<T extends Record<string, any>>({
                       <Checkbox
                         checked={selectedRows.has(String(item.id))}
                         onCheckedChange={(checked) =>
-                          handleRowSelect(String(item.id), checked as boolean)
+                          handleRowSelect(item.id, checked as boolean)
                         }
                       />
                     </td>
@@ -384,7 +382,7 @@ export function DataTable<T extends Record<string, any>>({
                       className={cn(
                         "h-16 px-4 py-3 text-sm leading-5 align-middle",
                         column.align === "right" && "text-right",
-                        column.align === "center" && "text-center"
+                        column.align === "center" && "text-center",
                       )}
                     >
                       {column.render
@@ -416,17 +414,10 @@ export function DataTable<T extends Record<string, any>>({
                             className={cn(
                               "flex items-center gap-2 cursor-pointer",
                               action.key === "delete" &&
-                                "text-red-600 focus:text-red-600"
+                                "text-red-600 focus:text-red-600",
                             )}
                           >
-                            {/* Always use Lucide icons for actions */}
-                            {action.key === "view" && <Eye size={14} />}
-                            {action.key === "edit" && <Edit size={14} />}
-                            {action.key === "share" && <Share size={14} />}
-                            {action.key === "download" && (
-                              <Download size={14} />
-                            )}
-                            {action.key === "delete" && <Trash size={14} />}
+                            {action.icon && <action.icon size={14} />}
                             {action.label}
                           </DropdownMenuItem>
                         ))}
@@ -440,78 +431,83 @@ export function DataTable<T extends Record<string, any>>({
         </table>
       </div>
 
-      {/* Footer with Pagination and Progress */}
-      {/* Footer with Pagination and Progress */}
-      <div className="px-4 py-4 border-t border-ds-gray-200 bg-white">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          {/* Left side - Progress and Info */}
-          <div className="flex items-center gap-4">
+      {enablePagination && (
+        <div className="px-4 py-4 border-t border-ds-gray-200 bg-white">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            {/* Left side - Progress and Info */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-ds-gray-600">
+                  Showing {startIndex + 1} to{" "}
+                  {Math.min(
+                    startIndex + pageSize,
+                    filteredAndSortedData.length,
+                  )}{" "}
+                  of {filteredAndSortedData.length} results
+                </span>
+              </div>
+            </div>
+            {/* Right side - Pagination Controls */}
             <div className="flex items-center gap-2">
-              <span className="text-sm text-ds-gray-600">
-                Showing {startIndex + 1} to{" "}
-                {Math.min(startIndex + pageSize, filteredAndSortedData.length)}{" "}
-                of {filteredAndSortedData.length} results
-              </span>
+              <Select
+                value={String(pageSize)}
+                onValueChange={(value) => setPageSize(Number(value))}
+              >
+                <SelectTrigger className="w-20">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="5">5</SelectItem>
+                  <SelectItem value="10">10</SelectItem>
+                  <SelectItem value="25">25</SelectItem>
+                  <SelectItem value="50">50</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="flex items-center gap-1"
+              >
+                <ChevronLeft size={14} />
+                Previous
+              </Button>
+              <div className="flex items-center gap-1">
+                {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+                  const page = i + 1;
+                  return (
+                    <Button
+                      key={page}
+                      variant={currentPage === page ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setCurrentPage(page)}
+                      className="w-8 h-8"
+                    >
+                      {page}
+                    </Button>
+                  );
+                })}
+                {totalPages > 5 && (
+                  <span className="text-ds-gray-500">...</span>
+                )}
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                }
+                disabled={currentPage === totalPages}
+                className="flex items-center gap-1"
+              >
+                Next
+                <ChevronRight size={14} />
+              </Button>
             </div>
-          </div>
-          {/* Right side - Pagination Controls */}
-          <div className="flex items-center gap-2">
-            <Select
-              value={String(pageSize)}
-              onValueChange={(value) => setPageSize(Number(value))}
-            >
-              <SelectTrigger className="w-20">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="5">5</SelectItem>
-                <SelectItem value="10">10</SelectItem>
-                <SelectItem value="25">25</SelectItem>
-                <SelectItem value="50">50</SelectItem>
-              </SelectContent>
-            </Select>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-              className="flex items-center gap-1"
-            >
-              <ChevronLeft size={14} />
-              Previous
-            </Button>
-            <div className="flex items-center gap-1">
-              {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-                const page = i + 1;
-                return (
-                  <Button
-                    key={page}
-                    variant={currentPage === page ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setCurrentPage(page)}
-                    className="w-8 h-8"
-                  >
-                    {page}
-                  </Button>
-                );
-              })}
-              {totalPages > 5 && <span className="text-ds-gray-500">...</span>}
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-              }
-              disabled={currentPage === totalPages}
-              className="flex items-center gap-1"
-            >
-              Next
-              <ChevronRight size={14} />
-            </Button>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Avatars and Progress Bar Card (bottom) */}
       {showAvatars && (
@@ -530,7 +526,9 @@ export function DataTable<T extends Record<string, any>>({
                     />
                     <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-ds-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap z-20">
                       <div className="font-medium">{item.name}</div>
-                      <div className="text-ds-gray-300">{item.email}</div>
+                      {item.email && (
+                        <div className="text-ds-gray-300">{item.email}</div>
+                      )}
                     </div>
                   </div>
                 ))}

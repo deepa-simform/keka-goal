@@ -176,11 +176,11 @@ export const teamMembersDataColumns: DataTableColumn<TeamMember>[] = [
     render: (_item: TeamMember) => {
       const lastActive = new Date();
       lastActive.setHours(
-        lastActive.getHours() - Math.floor(Math.random() * 48)
+        lastActive.getHours() - Math.floor(Math.random() * 48),
       );
 
       const hoursDiff = Math.floor(
-        (new Date().getTime() - lastActive.getTime()) / (1000 * 60 * 60)
+        (new Date().getTime() - lastActive.getTime()) / (1000 * 60 * 60),
       );
       let timeText = "";
       let colorClass = "text-ds-gray-600";
@@ -325,8 +325,8 @@ export const salesDataColumns: DataTableColumn<SalesRecord>[] = [
                 progress === 100
                   ? "bg-green-500"
                   : progress === 50
-                  ? "bg-yellow-500"
-                  : "bg-red-500"
+                    ? "bg-yellow-500"
+                    : "bg-red-500"
               }`}
               style={{ width: `${progress}%` }}
             />
@@ -430,13 +430,19 @@ export const companiesDataColumns: DataTableColumn<CompanyRecord>[] = [
     width: "16%",
     align: "right",
     render: (item: CompanyRecord) => {
-      const revenue =
-        item.employees * 100000 + Math.floor(Math.random() * 500000);
+      const seed = `${item.name}-${item.industry}-${item.location ?? ""}`;
+      let hash = 0;
+      for (let i = 0; i < seed.length; i++) {
+        const charCode = seed.charCodeAt(i);
+        hash = (hash * 31 + charCode) | 0; // simple deterministic hash
+      }
+      const offset = Math.abs(hash) % 500_000;
+      const revenue = item.employees * 100_000 + offset;
       return (
         <div className="flex items-center justify-end gap-1">
           <DollarSign size={12} className="text-green-600" />
           <span className="font-semibold text-[14px]">
-            ${(revenue / 1000000).toFixed(1)}M
+            ${(revenue / 1_000_000).toFixed(1)}M
           </span>
         </div>
       );

@@ -25,11 +25,12 @@ const tableVariants = cva(
       variant: "divider",
       size: "default",
     },
-  }
+  },
 );
 
 export interface TableProps<T = any>
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof tableVariants> {
   data: T[];
   columns: Column<T>[];
@@ -170,14 +171,16 @@ export function Table<T extends Record<string, any>>({
         }
         return <span className="font-medium text-ds-gray-900">{value}</span>;
 
-      case "status":
+      case "status": {
+        const normalizedStatus = String(value).toLowerCase();
         const statusVariant =
-          value === "Active"
+          normalizedStatus === "active"
             ? "success"
-            : value === "Inactive"
-            ? "error"
-            : "warning";
+            : normalizedStatus === "inactive"
+              ? "error"
+              : "warning";
         return <Badge variant={statusVariant}>{value}</Badge>;
+      }
 
       case "teams":
         return (
@@ -199,16 +202,6 @@ export function Table<T extends Record<string, any>>({
       default:
         return <span className="text-ds-gray-600">{value}</span>;
     }
-  };
-
-  // Get row styling
-  const getRowStyling = (index: number) => {
-    const baseClasses =
-      "border-b border-ds-gray-200 transition-colors hover:bg-ds-gray-50";
-    if (variant === "alternating") {
-      return cn(baseClasses, index % 2 === 0 ? "bg-white" : "bg-ds-gray-50");
-    }
-    return baseClasses;
   };
 
   return (
@@ -242,7 +235,7 @@ export function Table<T extends Record<string, any>>({
                       enableSorting &&
                       "cursor-pointer hover:bg-ds-gray-100",
                     column.align === "right" && "text-right",
-                    column.align === "center" && "text-center"
+                    column.align === "center" && "text-center",
                   )}
                   onClick={() => handleSort(column.key)}
                 >
@@ -281,7 +274,7 @@ export function Table<T extends Record<string, any>>({
                       className={cn(
                         "h-[72px] px-6 py-4 text-[14px] leading-5",
                         column.align === "right" && "text-right",
-                        column.align === "center" && "text-center"
+                        column.align === "center" && "text-center",
                       )}
                     >
                       {renderCell(item, column)}
@@ -309,8 +302,10 @@ export function Table<T extends Record<string, any>>({
 }
 
 // Specific table components for different data types
-export interface TeamMembersTableProps
-  extends Omit<TableProps<TeamMember>, "data" | "columns"> {
+export interface TeamMembersTableProps extends Omit<
+  TableProps<TeamMember>,
+  "data" | "columns"
+> {
   data: TeamMember[];
 }
 
