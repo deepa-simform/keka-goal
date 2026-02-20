@@ -9,6 +9,10 @@ import {
   X,
   ChevronRight,
   FileText,
+  Square,
+  Table,
+  Layers,
+  ChevronDown,
 } from "lucide-react";
 
 const menuItems = [
@@ -36,6 +40,26 @@ const menuItems = [
         path: "/forms",
         icon: FileText,
       },
+      {
+        title: "Modals",
+        path: "/modals",
+        icon: Square,
+      },
+      {
+        title: "Tables",
+        path: "/tables",
+        icon: Table,
+      },
+      {
+        title: "Tabs",
+        path: "/tabs",
+        icon: Layers,
+      },
+      {
+        title: "Dropdowns",
+        path: "/dropdowns",
+        icon: ChevronDown,
+      },
     ],
   },
 ];
@@ -49,7 +73,7 @@ export function DashboardLayout() {
     setExpandedItems((prev) =>
       prev.includes(title)
         ? prev.filter((item) => item !== title)
-        : [...prev, title]
+        : [...prev, title],
     );
   };
 
@@ -63,7 +87,7 @@ export function DashboardLayout() {
       <aside
         className={cn(
           "fixed left-0 top-0 z-40 h-screen transition-all duration-300 bg-white border-r border-ds-gray-200",
-          sidebarOpen ? "w-64" : "w-0 md:w-16"
+          sidebarOpen ? "w-64" : "w-0 md:w-16",
         )}
       >
         <div className="flex h-full flex-col">
@@ -101,7 +125,7 @@ export function DashboardLayout() {
                       onClick={() => toggleExpanded(item.title)}
                       className={cn(
                         "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                        "hover:bg-ds-gray-100 text-ds-gray-700"
+                        "hover:bg-ds-gray-100 text-ds-gray-700",
                       )}
                     >
                       <item.icon className="size-5 shrink-0" />
@@ -111,7 +135,7 @@ export function DashboardLayout() {
                           <ChevronRight
                             className={cn(
                               "size-4 transition-transform",
-                              expandedItems.includes(item.title) && "rotate-90"
+                              expandedItems.includes(item.title) && "rotate-90",
                             )}
                           />
                         </>
@@ -127,7 +151,7 @@ export function DashboardLayout() {
                               "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                               isActive(child.path)
                                 ? "bg-ds-brand-50 text-ds-brand-700"
-                                : "text-ds-gray-700 hover:bg-ds-gray-100"
+                                : "text-ds-gray-700 hover:bg-ds-gray-100",
                             )}
                           >
                             <child.icon className="size-4 shrink-0" />
@@ -144,7 +168,7 @@ export function DashboardLayout() {
                       "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                       isActive(item.path)
                         ? "bg-ds-brand-50 text-ds-brand-700"
-                        : "text-ds-gray-700 hover:bg-ds-gray-100"
+                        : "text-ds-gray-700 hover:bg-ds-gray-100",
                     )}
                   >
                     <item.icon className="size-5 shrink-0" />
@@ -171,7 +195,7 @@ export function DashboardLayout() {
       <main
         className={cn(
           "flex-1 transition-all duration-300",
-          sidebarOpen ? "md:ml-64" : "md:ml-16"
+          sidebarOpen ? "md:ml-64" : "md:ml-16",
         )}
       >
         {/* Header */}
@@ -197,7 +221,7 @@ export function DashboardLayout() {
         </header>
 
         {/* Page Content */}
-        <div className="h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="overflow-y-auto">
           <Outlet />
         </div>
       </main>
